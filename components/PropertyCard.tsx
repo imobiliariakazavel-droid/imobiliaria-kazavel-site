@@ -5,7 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Property } from "@/lib/types/properties"
-import { MapPin, Bed, Bath, Car, Ruler, Tag, ChevronLeft, ChevronRight } from "lucide-react"
+import { MapPin, Bed, Bath, Car, Ruler, Tag, ChevronLeft, ChevronRight, Star } from "lucide-react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation, Pagination } from "swiper/modules"
 import type { Swiper as SwiperType } from "swiper"
@@ -96,15 +96,23 @@ export function PropertyCard({ property }: PropertyCardProps) {
         
         {/* Overlay com informações */}
         <div className="absolute inset-0 pointer-events-none z-10">
+          {property.is_featured && (
+            <div className="absolute top-3 left-3 pointer-events-none z-20">
+              <span className="bg-[#FFCC00] text-black px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 shadow-lg">
+                <Star className="h-3 w-3 fill-black" />
+                Destaque
+              </span>
+            </div>
+          )}
           {property.negotiations.length > 0 && (
-            <div className="absolute top-3 right-3 pointer-events-none">
+            <div className={`absolute top-3 pointer-events-none ${property.is_featured ? 'right-3' : 'right-3'}`}>
               <span className="bg-[#FFCC00] text-black px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
                 <Tag className="h-3 w-3" />
                 {getNegotiationText()}
               </span>
             </div>
           )}
-          {property.code && (
+          {property.code && !property.is_featured && (
             <div className="absolute top-3 left-3 pointer-events-none">
               <span className="bg-black/70 text-white px-3 py-1 rounded-full text-xs font-semibold">
                 Código: {property.code}

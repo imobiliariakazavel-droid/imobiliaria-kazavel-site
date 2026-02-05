@@ -73,6 +73,10 @@ export async function getProperties(params?: PropertiesApiParams): Promise<Prope
     searchParams.append('order', params.order)
   }
 
+  if (params?.only_featured !== undefined) {
+    searchParams.append('only_featured', params.only_featured.toString())
+  }
+
   const url = `/api/properties${searchParams.toString() ? `?${searchParams.toString()}` : ''}`
 
   const response = await fetch(url, {

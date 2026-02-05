@@ -49,6 +49,7 @@ export interface PropertyImage {
 export interface Property {
   id: string
   title: string
+  is_featured: boolean
   state: State | null
   city: City | null
   neighborhood: Neighborhood | null
@@ -94,4 +95,5 @@ export interface PropertiesApiParams {
   maximum_private_area?: number
   amenities?: PropertiesAmenities[]
   order?: OrderProperties
+  only_featured?: boolean
 }

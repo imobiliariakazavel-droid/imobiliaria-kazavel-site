@@ -20,6 +20,7 @@ export async function GET(request: NextRequest) {
     const maximumPrivateArea = searchParams.get('maximum_private_area')
     const amenities = searchParams.get('amenities')
     const order = searchParams.get('order')
+    const onlyFeatured = searchParams.get('only_featured')
 
     // Converter parâmetros para tipos apropriados ou null
     const pCode = code && code.trim() !== '' ? code.trim() : null
@@ -38,6 +39,7 @@ export async function GET(request: NextRequest) {
     const pMaximumPrivateArea = maximumPrivateArea ? parseFloat(maximumPrivateArea) : null
     const pAmenities = amenities && amenities.trim() !== '' ? amenities.split(',').filter(Boolean) : null
     const pOrder = order || null
+    const pOnlyFeatured = onlyFeatured === 'true' ? true : false
 
     // Chamar a função RPC do Supabase
     const { data, error } = await supabase.rpc('get_properties_client', {
@@ -57,6 +59,7 @@ export async function GET(request: NextRequest) {
       p_maximum_private_area: pMaximumPrivateArea,
       p_amenities: pAmenities,
       p_order: pOrder,
+      p_only_featured: pOnlyFeatured,
     })
 
     if (error) {
