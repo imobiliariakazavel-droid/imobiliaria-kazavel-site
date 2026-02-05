@@ -77,10 +77,15 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <span className="text-gray-300">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=R.+Cuiabá,+4570+-+Alto+Alegre,+Cascavel+-+PR,+85805-260"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-primary transition-colors"
+                >
                   R. Cuiabá, 4570 - Alto Alegre<br />
                   Cascavel - PR, 85805-260
-                </span>
+                </a>
               </li>
               <li className="flex items-start gap-3">
                 <Clock className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
@@ -119,6 +124,7 @@ export function Footer() {
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
           <p>&copy; {new Date().getFullYear()} Imobiliária Kazavel. Todos os direitos reservados.</p>
+          <p className="mt-2">CRECI: 9243</p>
         </div>
       </div>
     </footer>

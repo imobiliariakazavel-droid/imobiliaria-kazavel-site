@@ -57,3 +57,48 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Estilos customizados para o Swiper */
+.swiper-pagination {
+  bottom: 12px !important;
+}
+
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.5) !important;
+  opacity: 1 !important;
+  width: 8px !important;
+  height: 8px !important;
+  transition: all 0.3s ease !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #FFCC00 !important;
+  width: 24px !important;
+  height: 8px !important;
+  border-radius: 4px !important;
+}
+
+/* Estilos para paginação dinâmica */
+.swiper-pagination-bullet-dynamic {
+  transition: all 0.3s ease !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #FFCC00 !important;
+  background: rgba(0, 0, 0, 0.5) !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 16px !important;
+  font-weight: bold !important;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: rgba(0, 0, 0, 0.7) !important;
+}

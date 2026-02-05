@@ -20,20 +20,6 @@ export function Header() {
             />
           </Link>
           
-          <nav className="hidden md:flex items-center space-x-6">
-            <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
-              Início
-            </Link>
-            <Link href="/imoveis" className="text-sm font-medium hover:text-primary transition-colors">
-              Imóveis
-            </Link>
-            <Link href="/sobre" className="text-sm font-medium hover:text-primary transition-colors">
-              Sobre
-            </Link>
-            <Link href="/contato" className="text-sm font-medium hover:text-primary transition-colors">
-              Contato
-            </Link>
-          </nav>
 
           <div className="flex items-center gap-4">
             <div className="hidden lg:flex items-center gap-4 text-sm">
