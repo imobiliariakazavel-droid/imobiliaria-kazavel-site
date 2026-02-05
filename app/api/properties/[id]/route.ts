@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 
+// Desabilitar cache para garantir dados sempre atualizados
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -36,7 +40,14 @@ export async function GET(
     }
 
     // A função já retorna o JSON formatado
-    return NextResponse.json(data, { status: 200 })
+    return NextResponse.json(data, {
+      status: 200,
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+      },
+    })
   } catch (error) {
     return NextResponse.json(
       {

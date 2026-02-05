@@ -2,6 +2,10 @@ import { Metadata } from "next"
 import { PropertyDetailPageClient } from "./PropertyDetailPageClient"
 import { supabase } from "@/lib/supabase"
 
+// Desabilitar cache para garantir dados sempre atualizados
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://imobiliariakazavel.com.br"
 
 const typeLabels: Record<string, string> = {

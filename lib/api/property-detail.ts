@@ -7,11 +7,14 @@ import { PropertyDetailResponse } from '@/lib/types/property-detail'
  * @returns Resposta com detalhes do imóvel
  */
 export async function getPropertyDetail(id: string): Promise<PropertyDetailResponse> {
-  const response = await fetch(`/api/properties/${id}`, {
+  // Adicionar timestamp para evitar cache do navegador
+  const timestamp = new Date().getTime()
+  const response = await fetch(`/api/properties/${id}?t=${timestamp}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
+    cache: 'no-store',
   })
 
   if (!response.ok) {
