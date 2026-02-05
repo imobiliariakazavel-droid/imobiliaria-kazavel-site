@@ -1,7 +1,19 @@
+import { Header } from "@/components/Header"
+import { Hero } from "@/components/Hero"
+import { Features } from "@/components/Features"
+import { Footer } from "@/components/Footer"
+import { WhatsAppButton } from "@/components/WhatsAppButton"
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold">Imobiliária Kazavel</h1>
-    </main>
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <main className="flex-1">
+        <Hero />
+        <Features />
+      </main>
+      <Footer />
+      <WhatsAppButton />
+    </div>
   )
 }
