@@ -166,6 +166,31 @@ export function PropertyDetailPageClient() {
     }
   }
 
+  // Função para extrair o ID do vídeo do YouTube e converter para URL de embed
+  const getYouTubeEmbedUrl = (url: string): string | null => {
+    if (!url) return null
+    
+    // Padrões de URL do YouTube
+    const patterns = [
+      /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
+      /youtube\.com\/watch\?.*v=([^&\n?#]+)/,
+    ]
+    
+    for (const pattern of patterns) {
+      const match = url.match(pattern)
+      if (match && match[1]) {
+        return `https://www.youtube.com/embed/${match[1]}`
+      }
+    }
+    
+    // Se já for uma URL de embed, retornar como está
+    if (url.includes('youtube.com/embed/')) {
+      return url
+    }
+    
+    return null
+  }
+
   if (loading) {
     return (
       <div className="flex min-h-screen flex-col">
@@ -198,6 +223,7 @@ export function PropertyDetailPageClient() {
   }
 
   const sortedImages = property.images.sort((a, b) => a.order - b.order)
+  const sortedVideos = property.videos ? property.videos.sort((a, b) => a.order - b.order) : []
 
   return (
     <div className="flex min-h-screen flex-col overflow-x-hidden">
@@ -524,6 +550,33 @@ export function PropertyDetailPageClient() {
                           <span>{amenitiesLabels[amenity] || amenity}</span>
                         </div>
                       ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Vídeos */}
+              {sortedVideos.length > 0 && (
+                <Card>
+                  <CardContent className="pt-6">
+                    <h2 className="text-xl font-semibold mb-4">Vídeos</h2>
+                    <div className="space-y-6">
+                      {sortedVideos.map((video) => {
+                        const embedUrl = getYouTubeEmbedUrl(video.url)
+                        if (!embedUrl) return null
+                        
+                        return (
+                          <div key={video.id} className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                            <iframe
+                              src={embedUrl}
+                              title={`Vídeo do imóvel ${property.title}`}
+                              className="absolute top-0 left-0 w-full h-full rounded-lg"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            />
+                          </div>
+                        )
+                      })}
                     </div>
                   </CardContent>
                 </Card>

@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Phone, Mail, MapPin, Clock, Facebook, Instagram } from "lucide-react"
+import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Youtube } from "lucide-react"
 
 export function Footer() {
   return (
@@ -107,6 +107,15 @@ export function Footer() {
                 aria-label="Instagram"
               >
                 <Instagram className="h-6 w-6 text-primary" />
+              </a>
+              <a
+                href="https://www.youtube.com/@Imobili%C3%A1riaKazavel"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/20 hover:bg-primary transition-colors"
+                aria-label="YouTube"
+              >
+                <Youtube className="h-6 w-6 text-primary" />
               </a>
             </div>
           </div>
