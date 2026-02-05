@@ -60,6 +60,8 @@ const typeLabels: Record<string, string> = {
   land: 'Terreno',
   office: 'Escritório',
   store: 'Loja',
+  farm: 'Fazenda',
+  small_farm: 'Chácara',
 }
 
 export function PropertyDetailPageClient() {

@@ -215,6 +215,8 @@ function PropertiesPageContent() {
         land: 'Terreno',
         office: 'Escritório',
         store: 'Loja',
+        farm: 'Fazenda',
+        small_farm: 'Chácara',
       }
       filters.push(`Tipo: ${typeMap[searchParams.get('type') || ''] || searchParams.get('type')}`)
     }

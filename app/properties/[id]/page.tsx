@@ -4,6 +4,16 @@ import { supabase } from "@/lib/supabase"
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://imobiliariakazavel.com.br"
 
+const typeLabels: Record<string, string> = {
+  house: 'Casa',
+  apartment: 'Apartamento',
+  land: 'Terreno',
+  office: 'Escritório',
+  store: 'Loja',
+  farm: 'Fazenda',
+  small_farm: 'Chácara',
+}
+
 async function getPropertyForMetadata(id: string) {
   try {
     const { data, error } = await supabase.rpc('get_propertie_client', {
@@ -31,9 +41,10 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   }
 
   const title = `${property.title} - Código ${property.code} | Imobiliária Kazavel`
+  const propertyTypeLabel = typeLabels[property.type] || 'Imóvel'
   const description = property.description 
     ? `${property.description.substring(0, 160)}...` 
-    : `Imóvel ${property.type === 'house' ? 'Casa' : property.type === 'apartment' ? 'Apartamento' : 'Imóvel'} em ${property.city?.name || 'Cascavel'}. ${property.sale_value ? `Venda: ${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(property.sale_value)}` : ''} ${property.lease_value ? `Locação: ${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(property.lease_value)}` : ''}`
+    : `${propertyTypeLabel} em ${property.city?.name || 'Cascavel'}. ${property.sale_value ? `Venda: ${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(property.sale_value)}` : ''} ${property.lease_value ? `Locação: ${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(property.lease_value)}` : ''}`
 
   const imageUrl = property.images && property.images.length > 0 
     ? property.images[0].url 
