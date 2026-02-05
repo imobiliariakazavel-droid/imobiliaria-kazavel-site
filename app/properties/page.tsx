@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/select"
 import Link from "next/link"
 
-export default function PropertiesPage() {
+function PropertiesPageContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [properties, setProperties] = useState<Property[]>([])
@@ -450,5 +450,21 @@ export default function PropertiesPage() {
       <Footer />
       <WhatsAppButton />
     </div>
+  )
+}
+
+export default function PropertiesPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-1 flex items-center justify-center">
+          <Loader2 className="h-8 w-8 animate-spin text-[#FFCC00]" />
+        </main>
+        <Footer />
+      </div>
+    }>
+      <PropertiesPageContent />
+    </Suspense>
   )
 }
