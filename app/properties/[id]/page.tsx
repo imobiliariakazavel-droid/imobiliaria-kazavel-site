@@ -204,44 +204,45 @@ export default function PropertyDetailPage() {
   const sortedImages = property.images.sort((a, b) => a.order - b.order)
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col overflow-x-hidden">
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 w-full overflow-x-hidden">
         {/* Botão Voltar e Compartilhar */}
         <div className="bg-gray-50 border-b">
           <div className="container mx-auto px-4 py-4">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-2 flex-wrap">
               <Link href="/properties">
-                <Button variant="ghost" className="text-gray-600 hover:text-black">
+                <Button variant="ghost" className="text-gray-600 hover:text-black text-sm">
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  Voltar para Imóveis
+                  <span className="hidden sm:inline">Voltar para Imóveis</span>
+                  <span className="sm:hidden">Voltar</span>
                 </Button>
               </Link>
               <div className="flex items-center gap-2">
                 <Button
                   variant="outline"
                   onClick={handleCopyLink}
-                  className="text-gray-600 hover:text-black"
+                  className="text-gray-600 hover:text-black text-sm px-2 sm:px-4"
                 >
                   {copied ? (
                     <>
-                      <Check className="h-4 w-4 mr-2" />
-                      Link Copiado!
+                      <Check className="h-4 w-4 sm:mr-2" />
+                      <span className="hidden sm:inline">Link Copiado!</span>
                     </>
                   ) : (
                     <>
-                      <Copy className="h-4 w-4 mr-2" />
-                      Copiar Link
+                      <Copy className="h-4 w-4 sm:mr-2" />
+                      <span className="hidden sm:inline">Copiar Link</span>
                     </>
                   )}
                 </Button>
                 <Button
                   variant="outline"
                   onClick={handleShare}
-                  className="text-gray-600 hover:text-black"
+                  className="text-gray-600 hover:text-black text-sm px-2 sm:px-4"
                 >
-                  <Share2 className="h-4 w-4 mr-2" />
-                  Compartilhar
+                  <Share2 className="h-4 w-4 sm:mr-2" />
+                  <span className="hidden sm:inline">Compartilhar</span>
                 </Button>
               </div>
             </div>
@@ -249,14 +250,14 @@ export default function PropertyDetailPage() {
         </div>
 
         {/* Galeria de Imagens - Grid Preview */}
-        <div className="bg-white">
-          <div className="container mx-auto px-4 py-8">
+        <div className="bg-white w-full overflow-x-hidden">
+          <div className="container mx-auto px-4 py-8 w-full max-w-full">
             {sortedImages.length > 0 ? (
-              <div className="relative">
+              <div className="relative w-full">
                 {/* Grid de Preview das Fotos */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 relative">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 relative w-full">
                   {/* Primeira foto grande (esquerda) */}
-                  <div className="row-span-2 col-span-2 md:col-span-2 relative h-[300px] md:h-[500px]">
+                  <div className="row-span-2 col-span-2 md:col-span-2 relative h-[200px] sm:h-[300px] md:h-[500px] w-full">
                     <Image
                       src={sortedImages[0].url}
                       alt={`${property.title} - Imagem principal`}
@@ -271,12 +272,13 @@ export default function PropertyDetailPage() {
                         }, 100)
                       }}
                       priority
+                      sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   </div>
 
                   {/* Segunda foto (topo direito) */}
                   {sortedImages[1] && (
-                    <div className="relative h-[145px] md:h-[245px]">
+                    <div className="relative h-[95px] sm:h-[145px] md:h-[245px] w-full">
                       <Image
                         src={sortedImages[1].url}
                         alt={`${property.title} - Imagem 2`}
@@ -290,13 +292,14 @@ export default function PropertyDetailPage() {
                             }
                           }, 100)
                         }}
+                        sizes="(max-width: 768px) 50vw, 25vw"
                       />
                     </div>
                   )}
 
                   {/* Terceira foto (meio direito) */}
                   {sortedImages[2] && (
-                    <div className="relative h-[145px] md:h-[245px]">
+                    <div className="relative h-[95px] sm:h-[145px] md:h-[245px] w-full">
                       <Image
                         src={sortedImages[2].url}
                         alt={`${property.title} - Imagem 3`}
@@ -310,13 +313,14 @@ export default function PropertyDetailPage() {
                             }
                           }, 100)
                         }}
+                        sizes="(max-width: 768px) 50vw, 25vw"
                       />
                     </div>
                   )}
 
                   {/* Quarta foto (baixo direito) */}
                   {sortedImages[3] && (
-                    <div className="relative h-[145px] md:h-[245px]">
+                    <div className="relative h-[95px] sm:h-[145px] md:h-[245px] w-full">
                       <Image
                         src={sortedImages[3].url}
                         alt={`${property.title} - Imagem 4`}
@@ -330,15 +334,16 @@ export default function PropertyDetailPage() {
                             }
                           }, 100)
                         }}
+                        sizes="(max-width: 768px) 50vw, 25vw"
                       />
                     </div>
                   )}
 
                   {/* Botão Visualizar Fotos */}
-                  <div className="absolute bottom-4 right-4 z-10">
+                  <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 z-10">
                     <Button
                       onClick={() => setShowGallery(true)}
-                      className="bg-white hover:bg-gray-100 text-black shadow-lg"
+                      className="bg-white hover:bg-gray-100 text-black shadow-lg text-xs sm:text-sm px-2 sm:px-4 py-1 sm:py-2"
                     >
                       Visualizar Fotos
                     </Button>
@@ -346,7 +351,7 @@ export default function PropertyDetailPage() {
                 </div>
               </div>
             ) : (
-              <div className="h-[500px] md:h-[600px] flex items-center justify-center bg-gray-200 rounded-lg">
+              <div className="h-[300px] sm:h-[500px] md:h-[600px] flex items-center justify-center bg-gray-200 rounded-lg w-full">
                 <span className="text-gray-400">Sem imagens disponíveis</span>
               </div>
             )}
@@ -356,7 +361,7 @@ export default function PropertyDetailPage() {
         {/* Modal de Galeria Completa */}
         {showGallery && sortedImages.length > 0 && (
           <div 
-            className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4"
+            className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-2 sm:p-4 overflow-hidden"
             onClick={(e) => {
               if (e.target === e.currentTarget) {
                 setShowGallery(false)
@@ -365,13 +370,13 @@ export default function PropertyDetailPage() {
           >
             <button
               onClick={() => setShowGallery(false)}
-              className="absolute top-4 right-4 z-[101] text-white hover:text-gray-300 transition-colors bg-black/50 rounded-full p-2"
+              className="absolute top-2 right-2 sm:top-4 sm:right-4 z-[101] text-white hover:text-gray-300 transition-colors bg-black/50 rounded-full p-2"
               aria-label="Fechar galeria"
             >
-              <X className="h-8 w-8" />
+              <X className="h-6 w-6 sm:h-8 sm:w-8" />
             </button>
             
-            <div className="w-full max-w-7xl h-full flex flex-col py-12">
+            <div className="w-full max-w-7xl h-full flex flex-col py-2 sm:py-12 overflow-hidden">
               <Swiper
                 modules={[Navigation, Pagination]}
                 spaceBetween={0}
@@ -383,7 +388,7 @@ export default function PropertyDetailPage() {
               >
                 {sortedImages.map((image) => (
                   <SwiperSlide key={image.id}>
-                    <div className="relative w-full h-full flex items-center justify-center">
+                    <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
                       <Image
                         src={image.url}
                         alt={`${property.title} - Imagem ${image.order}`}
@@ -392,6 +397,7 @@ export default function PropertyDetailPage() {
                         className="max-w-full max-h-full object-contain"
                         priority={image.order === 1}
                         unoptimized
+                        sizes="100vw"
                       />
                     </div>
                   </SwiperSlide>
@@ -401,21 +407,21 @@ export default function PropertyDetailPage() {
           </div>
         )}
 
-        <div className="container mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="container mx-auto px-4 py-8 w-full max-w-full overflow-x-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
             {/* Conteúdo Principal */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-6 w-full min-w-0">
               {/* Título e Código */}
-              <div>
-                <div className="flex items-start justify-between gap-4 mb-2">
-                  <h1 className="text-3xl md:text-4xl font-bold text-gray-900">{property.title}</h1>
-                  <span className="bg-[#FFCC00] text-black px-4 py-1 rounded-full text-sm font-semibold whitespace-nowrap">
+              <div className="w-full min-w-0">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-2">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 break-words">{property.title}</h1>
+                  <span className="bg-[#FFCC00] text-black px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap self-start sm:self-auto">
                     Código: {property.code}
                   </span>
                 </div>
-                <div className="flex items-center gap-2 text-gray-600">
-                  <MapPin className="h-5 w-5 text-[#FFCC00]" />
-                  <span>{getLocationText()}</span>
+                <div className="flex items-start gap-2 text-gray-600 text-sm sm:text-base">
+                  <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-[#FFCC00] mt-0.5 flex-shrink-0" />
+                  <span className="break-words">{getLocationText()}</span>
                 </div>
               </div>
 
@@ -433,7 +439,7 @@ export default function PropertyDetailPage() {
               <Card>
                 <CardContent className="pt-6">
                   <h2 className="text-xl font-semibold mb-4">Características</h2>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                     {property.number_bedrooms !== null && (
                       <div className="flex items-center gap-2">
                         <Bed className="h-5 w-5 text-[#FFCC00]" />
@@ -510,11 +516,11 @@ export default function PropertyDetailPage() {
                 </CardContent>
               </Card>
 
-              {/* Amenidades */}
+              {/* Comodidades */}
               {property.amenities && property.amenities.length > 0 && (
                 <Card>
                   <CardContent className="pt-6">
-                    <h2 className="text-xl font-semibold mb-4">Amenidades</h2>
+                    <h2 className="text-xl font-semibold mb-4">Comodidades</h2>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                       {property.amenities.map((amenity) => (
                         <div key={amenity} className="flex items-center gap-2">
@@ -529,9 +535,9 @@ export default function PropertyDetailPage() {
             </div>
 
             {/* Sidebar - Informações e Contato */}
-            <div className="lg:col-span-1">
-              <Card className="sticky top-4">
-                <CardContent className="pt-6">
+            <div className="lg:col-span-1 w-full min-w-0">
+              <Card className="sticky top-4 w-full">
+                <CardContent className="pt-6 w-full">
                   {/* Valores */}
                   <div className="space-y-4 mb-6">
                     {property.sale_value && (

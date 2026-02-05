@@ -36,18 +36,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/imoveis" className="text-gray-300 hover:text-primary transition-colors">
+                <Link href="/properties" className="text-gray-300 hover:text-primary transition-colors">
                   Imóveis
-                </Link>
-              </li>
-              <li>
-                <Link href="/sobre" className="text-gray-300 hover:text-primary transition-colors">
-                  Sobre Nós
-                </Link>
-              </li>
-              <li>
-                <Link href="/contato" className="text-gray-300 hover:text-primary transition-colors">
-                  Contato
                 </Link>
               </li>
             </ul>
