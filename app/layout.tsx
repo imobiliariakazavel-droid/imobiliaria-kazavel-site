@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     "alugar imóvel Cascavel",
     "imóveis em Cascavel PR",
   ],
+  applicationName: "Imobiliária Kazavel",
   authors: [{ name: "Imobiliária Kazavel" }],
   creator: "Imobiliária Kazavel",
   publisher: "Imobiliária Kazavel",
@@ -66,15 +67,19 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "https://bdxoocqlcrurivdxkxao.supabase.co/storage/v1/object/public/project/favicon.png",
-    shortcut: "https://bdxoocqlcrurivdxkxao.supabase.co/storage/v1/object/public/project/favicon.png",
-    apple: "https://bdxoocqlcrurivdxkxao.supabase.co/storage/v1/object/public/project/favicon.png",
+    icon: "https://bdxoocqlcrurivdxkxao.supabase.co/storage/v1/object/public/project/favicon_2.jpg",
+    shortcut: "https://bdxoocqlcrurivdxkxao.supabase.co/storage/v1/object/public/project/favicon_2.jpg",
+    apple: "https://bdxoocqlcrurivdxkxao.supabase.co/storage/v1/object/public/project/favicon_2.jpg",
   },
   alternates: {
     canonical: siteUrl,
   },
   verification: {
     google: "Y-oeOPHwB5-k3rimtGjfvXqs5CXmZU7mfGCHrUnShro",
+  },
+  other: {
+    "og:site_name": "Imobiliária Kazavel",
+    "application-name": "Imobiliária Kazavel",
   },
 }
 
