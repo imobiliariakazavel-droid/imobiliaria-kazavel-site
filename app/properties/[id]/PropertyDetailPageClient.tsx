@@ -62,6 +62,8 @@ const typeLabels: Record<string, string> = {
   store: 'Loja',
   farm: 'Fazenda',
   small_farm: 'Chácara',
+  two_story_house: 'Sobrado',
+  condominium: 'Condomínio',
 }
 
 export function PropertyDetailPageClient() {

@@ -1,4 +1,4 @@
-export type PropertiesType = 'house' | 'apartment' | 'land' | 'office' | 'store' | 'farm' | 'small_farm'
+export type PropertiesType = 'house' | 'apartment' | 'land' | 'office' | 'store' | 'farm' | 'small_farm' | 'two_story_house' | 'condominium'
 export type PropertiesNegotiations = 'sale' | 'lease'
 export type OrderProperties = 
   | 'greater_value'

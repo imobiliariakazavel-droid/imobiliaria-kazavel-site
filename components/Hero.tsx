@@ -206,6 +206,8 @@ export function Hero() {
                         <SelectItem value="store">Loja</SelectItem>
                         <SelectItem value="farm">Fazenda</SelectItem>
                         <SelectItem value="small_farm">Chácara</SelectItem>
+                        <SelectItem value="two_story_house">Sobrado</SelectItem>
+                        <SelectItem value="condominium">Condomínio</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
